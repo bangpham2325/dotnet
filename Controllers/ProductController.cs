@@ -12,10 +12,13 @@ namespace test_mvc.Controllers
             _productService = productService;
         }
  
-        public IActionResult Index(string searchName)
+        public IActionResult Index(string searchName, int CategoryId)
         {
             @ViewData["ProductName"] = searchName;
-            var products = _productService.GetProductsByName(searchName);
+            @ViewData["CategoryId"] = CategoryId;
+            var category = _productService.GetCategories();
+            ViewBag.Category = category;
+            var products = _productService.GetProductsByNameAndByCategory(searchName,CategoryId);
             return View(products);
         }
 
@@ -26,13 +29,21 @@ namespace test_mvc.Controllers
         }
         public IActionResult Save(Product product)
         {
-            if(product.Id == 0)
+            try
             {
-                _productService.CreateProduct(product);
+                if(product.Id == 0)
+                {
+                    _productService.CreateProduct(product);
+                }
+                else{
+                    _productService.UpdateProduct(product);
+                }
             }
-            else{
-                _productService.UpdateProduct(product);
+            catch(Exception)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
+
             
             return RedirectToAction("Index");
         }
@@ -55,8 +66,16 @@ namespace test_mvc.Controllers
 
         public IActionResult Delete(int id)
         {
-            // var product = _productService.GetProductByID(id);
-            _productService.DeleteProduct(id);
+            try
+            {
+                _productService.DeleteProduct(id);
+            }
+            catch (Exception/* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+            }
+            
             return RedirectToAction("Index");
         }
         // public ViewResult  Index(string name)

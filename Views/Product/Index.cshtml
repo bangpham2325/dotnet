@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Product Page";
     var products = Model;
-    var categories = Model;
+    var categories = ViewBag.Category;
 }
 
 <div class="text-center">
@@ -11,9 +11,29 @@
     { 
         <p>
             Find by name: @Html.TextBox("searchName")  
+            <div class="form-group">
+                <label for="Category">Category</label>
+                <select class="form-control" id="CategoryId" name="CategoryId">
+                    <option value="0" selected>__all__</option>
+                    @foreach (var category in categories)
+                    {
+                        @if(@ViewData["CategoryId"].ToString() == category.Id.ToString())
+                        {
+                            <option value="@category.Id" selected>@category.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                        
+                    }
+                </select>
+            </div>
             <input type="submit" value="Search" class="btn btn-primary"/>
         </p>
+
     }
+
 
     <table class="table">
         <thead>

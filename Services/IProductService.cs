@@ -17,6 +17,6 @@ namespace test_mvc.Services
         void UpdateProduct(Product product);
         void DeleteProduct(int id);
         List<Category> GetCategories();
-        List<Product> GetProductsByName(string name);
+        List<Product> GetProductsByNameAndByCategory(string name, int category_id);
     }
 }

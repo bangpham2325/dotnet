@@ -52,6 +52,26 @@ namespace test_mvc.Services
             }
             return _context.Products.Where(p => p.Name.Contains(name)).Include(p => p.Category).ToList();
         }
+        public List<Product> GetProductsByCategory(int category_id)
+        {
+            if(category_id == 0){
+                return GetProducts();
+            }
+            return _context.Products.Where(p => p.CategoryId == category_id).Include(p => p.Category).ToList();
+        }
+        public List<Product> GetProductsByNameAndByCategory(string name, int category_id)
+        {
+            if(string.IsNullOrEmpty(name) && category_id == 0){
+                return GetProducts();
+            }else if (!string.IsNullOrEmpty(name) && category_id == 0){
+                return GetProductsByName(name);
+            }
+            else if(category_id !=0){
+                return GetProductsByCategory(category_id);
+            }
+
+            return _context.Products.Where(p => p.Name.Contains(name) && p.CategoryId == category_id).Include(p => p.Category).ToList();
+        }
 
         public void UpdateProduct(Product product)
         {
