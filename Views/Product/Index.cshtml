@@ -1,0 +1,57 @@
+@model List<Product>;
+@{
+    ViewData["Title"] = "Product Page";
+    var products = Model;
+    var categories = Model;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome Product</h1>
+    <form action="Product" method="post">
+        <div class="input-group">
+            <div class="form-outline">
+                <input type="search" id="form1" class="form-control" value="@ViewData["ProductName"]" />
+            </div>
+            <button type="submit" class="btn btn-primary">search</button>
+        </div>
+    </form>
+    @using (Html.BeginForm())
+    {
+        <p>
+            Find by name: @Html.TextBox("searchName")  
+            <input type="submit" value="Search" />
+        </p>
+    }
+
+    <table class="table">
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Catagory</th>
+            <th>
+                <a href="Product/Create/" class="btn btn-primary">Create</a>
+            </th>
+        </thead>
+        <tbody>
+            @foreach (var product in products)
+            {
+                <tr>
+                    <td>@product.Id</td>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Quantity</td>
+                    <td>@product.Category.Name</td>
+                    <td>
+                        <a href="/Product/Update?id=@product.Id" class="btn btn-success">Update</a>
+                        <a href="Product/Delete?id=@product.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+            
+            
+        </tbody>
+        
+    </table>
+</div>
