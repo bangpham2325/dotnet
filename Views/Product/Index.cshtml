@@ -7,19 +7,11 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome Product</h1>
-    <form action="Product" method="post">
-        <div class="input-group">
-            <div class="form-outline">
-                <input type="search" id="form1" class="form-control" value="@ViewData["ProductName"]" />
-            </div>
-            <button type="submit" class="btn btn-primary">search</button>
-        </div>
-    </form>
     @using (Html.BeginForm())
-    {
+    { 
         <p>
             Find by name: @Html.TextBox("searchName")  
-            <input type="submit" value="Search" />
+            <input type="submit" value="Search" class="btn btn-primary"/>
         </p>
     }
 
@@ -34,7 +26,7 @@
                 <a href="Product/Create/" class="btn btn-primary">Create</a>
             </th>
         </thead>
-        <tbody>
+        <tbody style=" color: white;">
             @foreach (var product in products)
             {
                 <tr>

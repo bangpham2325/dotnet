@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CgGLL0uuTlo8jvIsWITYHUw+PSPTTawpuf4D5x4yBhE=",
+  "Hash": "YNqNfaH6dXivMjFE7JgpLDtc+vAfH3XvW0r/9Q/+jwg=",
   "Source": "test-mvc",
   "BasePath": "_content/test-mvc",
   "Mode": "Default",
@@ -1069,6 +1069,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\bangp\\Project\\test-mvc\\wwwroot\\pexels-bg.jpg",
+      "SourceId": "test-mvc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\bangp\\Project\\test-mvc\\wwwroot\\",
+      "BasePath": "_content/test-mvc",
+      "RelativePath": "pexels-bg.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\pexels-bg.jpg"
     }
   ]
 }
